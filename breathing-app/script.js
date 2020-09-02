@@ -14,7 +14,7 @@ const totalTime = 19000;
 const inhale = 4000;
 const hold = 7000;
 const exhale = 8000;
-const cycles = 3;
+const cycles = 2; // 0 based index
 
 breatheAnimation();
 

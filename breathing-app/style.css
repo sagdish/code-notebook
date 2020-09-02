@@ -63,7 +63,8 @@ body {
   width: 20px;
   height: 190px;
   /* background-color: red; */
-  animation: rotate 19s linear forwards infinite;
+  animation: rotate 19s linear forwards;
+  animation-iteration-count: 3;
   transform-origin: bottom center;
 }
 
