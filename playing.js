@@ -117,17 +117,32 @@
 // bind practice:
 
 
-Function.prototype.myBind = function(ctx) {
-  const self = this;
-  return function() {
-    self.apply(ctx);
-  }
+// Function.prototype.myBind = function(ctx) {
+//   const self = this;
+//   return function() {
+//     self.apply(ctx);
+//   }
+// }
+
+// const foo = function() {
+//   console.log(this.bar);
+// }
+
+// let baz = foo.myBind({bar: 'hello'});
+
+// baz();
+
+
+// compare two objects:
+const obj1 = {
+  name: 'sam',
+  age: 23
 }
 
-const foo = function() {
-  console.log(this.bar);
+const obj2 = {
+  name: 'sam',
+  age: 23
 }
 
-let baz = foo.myBind({bar: 'hello'});
-
-baz();
+console.log(JSON.stringify(obj1) === JSON.stringify(obj2));
+console.log(obj2)
