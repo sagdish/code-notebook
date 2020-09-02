@@ -14,9 +14,10 @@ const totalTime = 19000;
 const inhale = 4000;
 const hold = 7000;
 const exhale = 8000;
-const cycles = 2; // 0 based index
+const cycles = 3;
+let kickOf = true;
 
-breatheAnimation();
+// breatheAnimation();
 
 function breatheAnimation() {
   text.innerHTML = "Inhale";
@@ -33,14 +34,25 @@ function breatheAnimation() {
 }
 
 function setIntervalX(callback, delay, repetitions) {
-  let x = 0;
+  let x = 1;
+
+  if (kickOf) {
+    kickOf = false;
+    callback();
+  }
+
   const intervalId = window.setInterval(() => {
     callback();
 
     if (++x === repetitions) {
       window.clearInterval(intervalId);
+      completed = true;
     }
   }, delay);
+
+  // if (completed) {
+  //   text.innerText = "Relax";
+  // }
 }
 
 setIntervalX(breatheAnimation, totalTime, cycles);
