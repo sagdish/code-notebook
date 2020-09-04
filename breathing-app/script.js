@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const text = document.getElementById("text");
+const counter = document.getElementById("counter");
 
 const totalTime = 19000;
 
@@ -22,6 +23,8 @@ let kickOf = true;
 function breatheAnimation() {
   text.innerHTML = "Inhale";
   container.className = "container grow";
+  // counter.innerHTML = "1";
+  countDown(4);
 
   setTimeout(() => {
     text.innerText = "Hold";
@@ -31,6 +34,19 @@ function breatheAnimation() {
       container.className = "container shrink";
     }, hold);
   }, inhale);
+}
+
+function countDown(cycle) {
+  let num = 0;
+  counter.innerHTML = "1";
+
+  const intervalCount = window.setInterval(() => {
+    num++;
+    counter.innerText = `${num}`;
+    if (num >= cycle) {
+      window.clearInterval(intervalCount);
+    }
+  }, 1000);
 }
 
 function setIntervalX(callback, delay, repetitions) {
