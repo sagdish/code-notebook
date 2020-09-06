@@ -17,40 +17,50 @@ const hold = 7000;
 const exhale = 8000;
 const cycles = 3;
 let kickOf = true;
+let completed = false;
 
 // breatheAnimation();
 
 function breatheAnimation() {
   text.innerHTML = "Inhale";
+  // counter.innerHTML = " ";
   container.className = "container grow";
-  // counter.innerHTML = "1";
   countDown(4);
 
   setTimeout(() => {
     text.innerText = "Hold";
+    countDown(7);
 
     setTimeout(() => {
       text.innerText = "Exhale";
+      countDown(8);
       container.className = "container shrink";
+
+      if (completed) {
+        setTimeout(() => {
+          text.innerText = "Relax";
+        }, exhale);
+      }
     }, hold);
   }, inhale);
 }
 
 function countDown(cycle) {
   let num = 0;
-  counter.innerHTML = "1";
-
+  // counter.innerText = "0";
   const intervalCount = window.setInterval(() => {
+    // counter.innerText = "1";
     num++;
     counter.innerText = `${num}`;
     if (num >= cycle) {
       window.clearInterval(intervalCount);
+      // counter.innerText = `${" "}`;
     }
   }, 1000);
 }
 
 function setIntervalX(callback, delay, repetitions) {
-  let x = 1;
+  let x = 0;
 
   if (kickOf) {
     kickOf = false;
@@ -60,7 +70,7 @@ function setIntervalX(callback, delay, repetitions) {
   const intervalId = window.setInterval(() => {
     callback();
 
-    if (++x === repetitions) {
+    if (++x >= repetitions) {
       window.clearInterval(intervalId);
       completed = true;
     }
@@ -71,6 +81,6 @@ function setIntervalX(callback, delay, repetitions) {
   // }
 }
 
-setIntervalX(breatheAnimation, totalTime, cycles);
+setIntervalX(breatheAnimation, totalTime, 1);
 
 // setInterval(breatheAnimation, totalTime);
