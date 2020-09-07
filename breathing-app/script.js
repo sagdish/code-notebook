@@ -1,6 +1,8 @@
 const container = document.querySelector(".container");
 const text = document.getElementById("text");
 const counter = document.getElementById("counter");
+const start = document.getElementById("start");
+const stop = document.getElementById("stop");
 
 const totalTime = 19000;
 
@@ -19,7 +21,19 @@ const cycles = 3;
 let kickOf = true;
 let completed = false;
 
-// breatheAnimation();
+start.addEventListener("click", startExercise);
+// stop.addEventListener("click", stopExercise);
+
+function stopExercise(intId) {
+  window.clearInterval(intId);
+  text.innerText = "";
+  counter.innerText = "";
+  kickOf = true;
+}
+
+function startExercise() {
+  setIntervalX(breatheAnimation, totalTime, 1);
+}
 
 function breatheAnimation() {
   text.innerHTML = "Inhale";
@@ -39,6 +53,7 @@ function breatheAnimation() {
       if (completed) {
         setTimeout(() => {
           text.innerText = "Relax";
+          counter.innerText = "🔁";
         }, exhale);
       }
     }, hold);
@@ -54,7 +69,7 @@ function countDown(cycle) {
     counter.innerText = `${num}`;
     if (num >= cycle) {
       window.clearInterval(intervalCount);
-      // counter.innerText = `${" "}`;
+      counter.innerText = "-";
     }
   }, 1000);
 }
@@ -62,12 +77,14 @@ function countDown(cycle) {
 function setIntervalX(callback, delay, repetitions) {
   let x = 0;
 
+  // in the beginning start right away
   if (kickOf) {
     kickOf = false;
     callback();
   }
 
   const intervalId = window.setInterval(() => {
+    // call again
     callback();
 
     if (++x >= repetitions) {
@@ -76,11 +93,19 @@ function setIntervalX(callback, delay, repetitions) {
     }
   }, delay);
 
-  // if (completed) {
-  //   text.innerText = "Relax";
-  // }
+  stop.addEventListener("click", () => stopExercise(intervalId));
 }
 
-setIntervalX(breatheAnimation, totalTime, 1);
+// setIntervalX(breatheAnimation, totalTime, 1);
 
 // setInterval(breatheAnimation, totalTime);
+// unsuccessfull atempt to show last second
+// function beforeSwitch(lastNum) {
+//   counter.innerText = `${lastNum}`;
+//   return new Promise((done) =>
+//     setTimeout(() => {
+//       done();
+//       // counter.innerText = "-";
+//     }, 350)
+//   );
+// }

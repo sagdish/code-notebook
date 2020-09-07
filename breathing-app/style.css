@@ -26,12 +26,27 @@ body {
   margin: auto;
   position: relative;
   transform: scale(1);
-  padding-top: 15px;
+  /* padding-top: 15px; */
   /* border: 1px solid red; */
 }
 
+#start {
+  cursor: pointer;
+  font-size: 20px;
+  /* background-color: #010f1c; */
+  /* color: white; */
+}
+
+#stop {
+  cursor: pointer;
+}
+
+#text {
+  font-size: 20px;
+}
+
 #counter {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .gradient-circle {
