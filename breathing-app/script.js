@@ -21,16 +21,20 @@ const cycles = 3;
 let kickOf = true;
 let completed = false;
 let timersArr = [];
+let intervalsArr = [];
 
 start.addEventListener("click", startExercise);
-// stop.addEventListener("click", stopExercise);
+stop.addEventListener("click", stopExercise);
 
-function stopExercise(intId) {
-  window.clearInterval(intId);
+function stopExercise() {
+  // window.clearInterval(intId);
   text.innerText = "";
   counter.innerText = "";
   kickOf = true;
   container.className = "container stop";
+
+  timersArr.forEach((timer) => clearTimeout(timer));
+  intervalsArr.forEach((interval) => clearInterval(interval));
 }
 
 function startExercise() {
@@ -43,27 +47,33 @@ function breatheAnimation() {
   container.className = "container grow";
   countDown(4);
 
-  setTimeout(() => {
-    text.innerText = "Hold";
-    countDown(7);
-
+  timersArr.push(
     setTimeout(() => {
-      text.innerText = "Exhale";
-      countDown(8);
-      container.className = "container shrink";
+      text.innerText = "Hold";
+      countDown(7);
 
-      if (completed) {
+      timersArr.push(
         setTimeout(() => {
-          text.innerText = "Relax";
-          counter.innerText = "🔁";
+          text.innerText = "Exhale";
+          countDown(8);
+          container.className = "container shrink";
 
-          text.innerText = "";
-          counter.innerText = "";
-          kickOf = true;
-        }, exhale);
-      }
-    }, hold);
-  }, inhale);
+          if (completed) {
+            timersArr.puah(
+              setTimeout(() => {
+                text.innerText = "Relax";
+                counter.innerText = "🔁";
+
+                text.innerText = "";
+                counter.innerText = "";
+                kickOf = true;
+              }, exhale)
+            );
+          }
+        }, hold)
+      );
+    }, inhale)
+  );
 }
 
 function countDown(cycle) {
@@ -78,6 +88,7 @@ function countDown(cycle) {
       counter.innerText = "-";
     }
   }, 1000);
+  intervalsArr.push(intervalCount);
 }
 
 function setIntervalX(callback, delay, repetitions) {
@@ -98,8 +109,8 @@ function setIntervalX(callback, delay, repetitions) {
       completed = true;
     }
   }, delay);
-
-  stop.addEventListener("click", () => stopExercise(intervalId));
+  intervalsArr.push(intervalId);
+  // stop.addEventListener("click", () => stopExercise(intervalId));
 }
 
 // setIntervalX(breatheAnimation, totalTime, 1);
