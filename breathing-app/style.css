@@ -105,6 +105,9 @@ body {
 .container.shrink {
   animation: shrink 8s linear forwards;
 }
+.container.stop {
+  animation: shrink 1s linear forwards;
+}
 
 @keyframes rotate {
   from {

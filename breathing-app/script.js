@@ -20,6 +20,7 @@ const exhale = 8000;
 const cycles = 3;
 let kickOf = true;
 let completed = false;
+let timersArr = [];
 
 start.addEventListener("click", startExercise);
 // stop.addEventListener("click", stopExercise);
@@ -29,6 +30,7 @@ function stopExercise(intId) {
   text.innerText = "";
   counter.innerText = "";
   kickOf = true;
+  container.className = "container stop";
 }
 
 function startExercise() {
@@ -54,6 +56,10 @@ function breatheAnimation() {
         setTimeout(() => {
           text.innerText = "Relax";
           counter.innerText = "🔁";
+
+          text.innerText = "";
+          counter.innerText = "";
+          kickOf = true;
         }, exhale);
       }
     }, hold);
