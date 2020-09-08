@@ -3,7 +3,8 @@ const text = document.getElementById("text");
 const counter = document.getElementById("counter");
 const start = document.getElementById("start");
 const stop = document.getElementById("stop");
-
+const pointer = document.getElementsByClassName("pointer-container");
+console.log(pointer[0], stop);
 const totalTime = 19000;
 
 // const inhalePercentage = 21 // percentage based on 4-7-8
@@ -19,6 +20,7 @@ const hold = 7000;
 const exhale = 8000;
 const cycles = 3;
 let kickOf = true;
+let started = false;
 let completed = false;
 let timersArr = [];
 let intervalsArr = [];
@@ -27,24 +29,29 @@ start.addEventListener("click", startExercise);
 stop.addEventListener("click", stopExercise);
 
 function stopExercise() {
-  // window.clearInterval(intId);
+  started = false;
   text.innerText = "";
   counter.innerText = "";
   kickOf = true;
   container.className = "container stop";
+  // pointer[0].className = "pointer-container goBack";
+  pointer[0].classList.remove("goAround");
 
   timersArr.forEach((timer) => clearTimeout(timer));
   intervalsArr.forEach((interval) => clearInterval(interval));
 }
 
 function startExercise() {
-  setIntervalX(breatheAnimation, totalTime, 1);
+  started = true;
+  setIntervalX(breatheAnimation, totalTime, 2);
 }
 
 function breatheAnimation() {
-  text.innerHTML = "Inhale";
+  // text.innerHTML = "Inhale";
+  text.innerText = "Inhale";
   // counter.innerHTML = " ";
   container.className = "container grow";
+  pointer[0].className = "pointer-container goAround";
   countDown(4);
 
   timersArr.push(
@@ -59,13 +66,11 @@ function breatheAnimation() {
           container.className = "container shrink";
 
           if (completed) {
-            timersArr.puah(
+            completed = false;
+            timersArr.push(
               setTimeout(() => {
                 text.innerText = "Relax";
                 counter.innerText = "🔁";
-
-                text.innerText = "";
-                counter.innerText = "";
                 kickOf = true;
               }, exhale)
             );
@@ -98,15 +103,17 @@ function setIntervalX(callback, delay, repetitions) {
   if (kickOf) {
     kickOf = false;
     callback();
+    x++;
   }
 
   const intervalId = window.setInterval(() => {
     // call again
     callback();
-
-    if (++x >= repetitions) {
+    x++;
+    if (x >= repetitions) {
       window.clearInterval(intervalId);
       completed = true;
+      x = 0;
     }
   }, delay);
   intervalsArr.push(intervalId);

@@ -35,10 +35,20 @@ body {
   font-size: 20px;
   /* background-color: #010f1c; */
   /* color: white; */
+  display: inline-block;
+  /* padding: 10px 30px; */
+  color: #fff;
+  /* border-radius: 5px; */
+  /* border: solid #fff 1px; */
 }
 
 #stop {
   cursor: pointer;
+  display: inline-block;
+  /* padding: 10px 30px; */
+  color: #fff;
+  /* border-radius: 5px; */
+  /* border: solid #fff 1px; */
 }
 
 #text {
@@ -85,9 +95,6 @@ body {
   width: 20px;
   height: 140px; /*190*/
   /* background-color: red; */
-  animation: rotate 19s linear forwards;
-  animation-iteration-count: 2;
-  transform-origin: bottom center;
 }
 
 .pointer {
@@ -97,6 +104,18 @@ body {
   width: 20px;
   display: block;
 }
+
+.pointer-container.goAround {
+  animation: rotate-start 19s linear forwards;
+  animation-iteration-count: 2;
+  transform-origin: bottom center;
+}
+
+/* .pointer-container.goBack {
+  animation: rotate-stop 1s linear forwards;
+  animation-iteration-count: 1;
+  transform-origin: bottom center;
+} */
 
 .container.grow {
   animation: grow 4s linear forwards;
@@ -109,7 +128,7 @@ body {
   animation: shrink 1s linear forwards;
 }
 
-@keyframes rotate {
+@keyframes rotate-start {
   from {
     transform: rotate(0deg);
   }
@@ -117,6 +136,19 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes rotate-stop {
+  /* from {
+    transform: rotate(0deg);
+  } */
+  to {
+    transform: rotate-start;
+  }
+
+  /* to {
+    transform: rotate(0deg);
+  } */
 }
 
 @keyframes grow {
