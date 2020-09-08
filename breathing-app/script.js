@@ -72,6 +72,7 @@ function breatheAnimation() {
                 text.innerText = "Relax";
                 counter.innerText = "🔁";
                 kickOf = true;
+                pointer[0].classList.remove("goAround");
               }, exhale)
             );
           }
@@ -83,7 +84,7 @@ function breatheAnimation() {
 
 function countDown(cycle) {
   let num = 0;
-  // counter.innerText = "0";
+  counter.innerText = "-";
   const intervalCount = window.setInterval(() => {
     // counter.innerText = "1";
     num++;
@@ -113,7 +114,6 @@ function setIntervalX(callback, delay, repetitions) {
     if (x >= repetitions) {
       window.clearInterval(intervalId);
       completed = true;
-      x = 0;
     }
   }, delay);
   intervalsArr.push(intervalId);
