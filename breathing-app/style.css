@@ -210,3 +210,9 @@ body {
     transform: scale(1);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .stopBtn.visible {
+    display: flex;
+  }
+}
