@@ -51,6 +51,7 @@ function stopExercise() {
 function startExercise() {
   console.log("started");
   started = true;
+  completed = false;
   setIntervalX(breatheAnimation, totalTime, 2);
   //show stop btn
   stop.className = "stopBtn visible";

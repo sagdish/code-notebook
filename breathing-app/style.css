@@ -73,7 +73,7 @@ body {
   color: #fff;
   border-radius: 50%;
   border: solid #fff 1px;
-  /* z-index: 2; */
+  z-index: 2;
   opacity: 0.5;
   transition: 0.3s;
 }
@@ -130,18 +130,18 @@ body {
 
 .pointer-container {
   position: absolute;
-  top: -40px;
-  left: 90px; /*140*/
-  width: 20px;
-  height: 140px; /*190*/
+  top: -27px;
+  left: 92px;
+  width: 16px;
+  height: 127px; /*190*/
   /* background-color: red; */
 }
 
 .pointer {
   background-color: #fff;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   display: block;
 }
 
