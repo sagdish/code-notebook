@@ -38,11 +38,13 @@ function stopExercise() {
   // pointer[0].className = "pointer-container goBack";
   pointer[0].classList.remove("goAround");
   // remove 'visible' class to hide button
+  // and show start
   stop.classList.remove("visible");
   start.className = "startBtn";
 
   timersArr.forEach((timer) => clearTimeout(timer));
   intervalsArr.forEach((interval) => clearInterval(interval));
+  console.log(timersArr);
 }
 
 function startExercise() {
@@ -81,6 +83,11 @@ function breatheAnimation() {
                 counter.innerText = "🔁";
                 kickOf = true;
                 pointer[0].classList.remove("goAround");
+
+                // remove 'visible' class to hide button
+                // and show start
+                stop.classList.remove("visible");
+                start.className = "startBtn";
               }, exhale)
             );
           }
