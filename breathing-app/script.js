@@ -1,10 +1,10 @@
 const container = document.querySelector(".container");
 const text = document.getElementById("text");
 const counter = document.getElementById("counter");
-const start = document.getElementById("start");
-const stop = document.getElementById("stop");
+const start = document.querySelector(".startBtn");
+const stop = document.querySelector(".stopBtn");
 const pointer = document.getElementsByClassName("pointer-container");
-console.log(pointer[0], stop);
+console.log(stop);
 const totalTime = 19000;
 
 // const inhalePercentage = 21 // percentage based on 4-7-8
@@ -29,6 +29,7 @@ start.addEventListener("click", startExercise);
 stop.addEventListener("click", stopExercise);
 
 function stopExercise() {
+  console.log("stoped");
   started = false;
   text.innerText = "";
   counter.innerText = "";
@@ -36,14 +37,21 @@ function stopExercise() {
   container.className = "container stop";
   // pointer[0].className = "pointer-container goBack";
   pointer[0].classList.remove("goAround");
+  // remove 'visible' class to hide button
+  stop.classList.remove("visible");
+  start.className = "startBtn";
 
   timersArr.forEach((timer) => clearTimeout(timer));
   intervalsArr.forEach((interval) => clearInterval(interval));
 }
 
 function startExercise() {
+  console.log("started");
   started = true;
   setIntervalX(breatheAnimation, totalTime, 2);
+  //show stop btn
+  stop.className = "stopBtn visible";
+  start.className = "stopBtn non-visible";
 }
 
 function breatheAnimation() {
