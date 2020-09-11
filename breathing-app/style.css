@@ -31,40 +31,60 @@ body {
 }
 
 .startBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
   cursor: pointer;
   font-size: 20px;
   /* background-color: #010f1c; */
   /* color: white; */
-  width: 100px;
-  height: 50px;
-  display: inline-block;
+  width: 80px;
+  height: 80px;
   padding: 10px 0;
   text-align: center;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 50%;
   border: solid #fff 1px;
   z-index: 1;
+  transition: 1s;
+  transition-duration: 1s;
+  opacity: 0.7;
+}
+.startBtn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  transition-duration: 1s;
 }
 
 .stopBtn {
   cursor: pointer;
   display: none;
   position: absolute;
-  width: 100px;
-  height: 50px;
+  bottom: 12px;
+  width: 30px;
+  height: 30px;
   background-color: #010f1c;
-  padding: 30px;
-  /* top: 20px;
-  left: 30px; */
-  /* padding: 10px 30px; */
+  /* text-align: center; */
+  align-items: center;
+  font-size: 16px;
+  justify-content: center;
+  padding-bottom: 2px;
   color: #fff;
-  /* border-radius: 5px; */
+  border-radius: 50%;
   border: solid #fff 1px;
-  z-index: 2;
+  /* z-index: 2; */
+  opacity: 0.5;
+  transition: 0.3s;
 }
 
 .container:hover .stopBtn.visible {
-  display: inline-block;
+  display: flex;
+  /* display: inline-block; */
+}
+.stopBtn.visible:hover {
+  opacity: 1;
+  transition-duration: 0.4s;
 }
 
 .startBtn.non-visible {

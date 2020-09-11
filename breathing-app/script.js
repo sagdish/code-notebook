@@ -44,7 +44,8 @@ function stopExercise() {
 
   timersArr.forEach((timer) => clearTimeout(timer));
   intervalsArr.forEach((interval) => clearInterval(interval));
-  console.log(timersArr);
+  timersArr.length = 0;
+  intervalsArr.length = 0;
 }
 
 function startExercise() {
@@ -80,14 +81,21 @@ function breatheAnimation() {
             timersArr.push(
               setTimeout(() => {
                 text.innerText = "Relax";
-                counter.innerText = "🔁";
+                counter.innerText = "";
+
+                // show after delay
+                setTimeout(() => {
+                  text.innerText = "";
+                  // restart an app
+                  start.className = "startBtn";
+                }, 3000);
                 kickOf = true;
                 pointer[0].classList.remove("goAround");
 
                 // remove 'visible' class to hide button
                 // and show start
                 stop.classList.remove("visible");
-                start.className = "startBtn";
+                // counter.innerText = "🔁";
               }, exhale)
             );
           }
@@ -134,17 +142,3 @@ function setIntervalX(callback, delay, repetitions) {
   intervalsArr.push(intervalId);
   // stop.addEventListener("click", () => stopExercise(intervalId));
 }
-
-// setIntervalX(breatheAnimation, totalTime, 1);
-
-// setInterval(breatheAnimation, totalTime);
-// unsuccessfull atempt to show last second
-// function beforeSwitch(lastNum) {
-//   counter.innerText = `${lastNum}`;
-//   return new Promise((done) =>
-//     setTimeout(() => {
-//       done();
-//       // counter.innerText = "-";
-//     }, 350)
-//   );
-// }
