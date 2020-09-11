@@ -26,7 +26,6 @@ body {
   margin: auto;
   position: relative;
   transform: scale(1);
-  /* padding-top: 15px; */
   /* border: 1px solid red; */
 }
 
@@ -147,7 +146,7 @@ body {
 
 .pointer-container.goAround {
   animation: rotate-start 19s linear forwards;
-  animation-iteration-count: 2;
+  animation-iteration-count: 4;
   transform-origin: bottom center;
 }
 
@@ -215,4 +214,14 @@ body {
   .stopBtn.visible {
     display: flex;
   }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

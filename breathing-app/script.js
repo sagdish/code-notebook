@@ -4,7 +4,7 @@ const counter = document.getElementById("counter");
 const start = document.querySelector(".startBtn");
 const stop = document.querySelector(".stopBtn");
 const pointer = document.getElementsByClassName("pointer-container");
-console.log(stop);
+// console.log(stop);
 const totalTime = 19000;
 
 // const inhalePercentage = 21 // percentage based on 4-7-8
@@ -52,7 +52,7 @@ function startExercise() {
   console.log("started");
   started = true;
   completed = false;
-  setIntervalX(breatheAnimation, totalTime, 2);
+  setIntervalX(breatheAnimation, totalTime, 4);
   //show stop btn
   stop.className = "stopBtn visible";
   start.className = "stopBtn non-visible";
