@@ -9,13 +9,15 @@ import { GlobalStyle } from "./components/utils";
 
 const App = () => (
   <>
-    <PrimaryButton>Hello Boo Boo Baa Baa</PrimaryButton>
-    <SecondaryButton>Hello Boo Boo Baa Baa</SecondaryButton>
+    <PrimaryButton modifiers="small">Hello Boo Boo Baa Baa</PrimaryButton>
+    <SecondaryButton modifiers={["large"]}>
+      Hello Boo Boo Baa Baa
+    </SecondaryButton>
     <TertiaryButton>Hello Boo Boo Baa Baa</TertiaryButton>
 
-    <PrimaryButton disabled>disabled</PrimaryButton>
+    {/* <PrimaryButton disabled>disabled</PrimaryButton>
     <SecondaryButton disabled>disabled</SecondaryButton>
-    <TertiaryButton disabled>disabled</TertiaryButton>
+    <TertiaryButton disabled>disabled</TertiaryButton> */}
     <GlobalStyle />
   </>
 );
