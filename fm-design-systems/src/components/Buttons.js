@@ -90,7 +90,7 @@ const Button = styled.button`
   }
 `;
 
-const PrimaryButton = styled(Button)`
+export const PrimaryButton = styled(Button)`
   background-color: ${(props) => props.theme.primaryColor};
   border: none;
   color: ${(props) => props.theme.textColorOnPrimary};
@@ -132,5 +132,3 @@ export const TertiaryButton = styled(Button)`
 
   ${applyStyleModifiers(BUTTON_MODIFIERS)}
 `;
-
-export default PrimaryButton;
