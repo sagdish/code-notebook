@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography} from '@material-ui/core';
+import { Card, CardContent, Checkbox, FormControlLabel, MenuItem, TextField, Typography} from '@material-ui/core';
 import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import { InvestmentDetails } from './InvestmentDetails';
@@ -22,22 +22,24 @@ export function FormDemo() {
         <Formik initialValues={initialValues} onSubmit={() => {}}>
           {({ values }) => (
             <Form>
-              <Field name="fullName" />
-              <Field name="initialInvestment" type="number" />
+              <Field name="fullName" as={TextField} label="Full Name" />
+              <Field name="initialInvestment" type="number" as={TextField} label="Initial Investment"/>
+
+              <CustomCheckbox />
               
-              <Field name="investmentRisk" value="High" type="checkbox" />
+              <Field name="investmentRisk" value="High" type="checkbox" as={Checkbox} label="high" />
               <Field name="investmentRisk" value="Medium" type="checkbox" />
               <Field name="investmentRisk" value="Low" type="checkbox" />
 
-              <Field name="commentAboutInvestmentRisk" as="textarea" />
+              <Field name="commentAboutInvestmentRisk" as={TextField} multiline rows={3} rowsMax={5} />
               
-              <Field name="dependents" as="select">
-                <option value={0}>0</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
+              <Field name="dependents" as={TextField} select>
+                <MenuItem value={0}>0</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
               </Field>
 
               <Field name="acceptedTermsAndConditions" type="checkbox" />
@@ -49,4 +51,8 @@ export function FormDemo() {
       </CardContent>
     </Card>
   )
+}
+
+export function CustomCheckbox() {
+  return <FormControlLabel control={ <Checkbox />} label="Secondary" />
 }
