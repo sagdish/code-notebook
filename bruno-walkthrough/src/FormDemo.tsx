@@ -1,6 +1,6 @@
-import { Card, CardContent, Checkbox, FormControlLabel, MenuItem, TextField, Typography} from '@material-ui/core';
+import { Card, CardContent, Checkbox, CheckboxProps, FormControlLabel, MenuItem, TextField, Typography} from '@material-ui/core';
 import React from 'react';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik, Field, useField } from 'formik';
 import { InvestmentDetails } from './InvestmentDetails';
 
 const initialValues: InvestmentDetails = {
@@ -25,12 +25,10 @@ export function FormDemo() {
               <Field name="fullName" as={TextField} label="Full Name" />
               <Field name="initialInvestment" type="number" as={TextField} label="Initial Investment"/>
 
-              <CustomCheckbox />
+              <CustomCheckbox name="investmentRisk" value="High" label="High" />
+              <CustomCheckbox name="investmentRisk" value="Medium" label="Medium" />
+              <CustomCheckbox name="investmentRisk" value="Low" label="Low" />
               
-              <Field name="investmentRisk" value="High" type="checkbox" as={Checkbox} label="high" />
-              <Field name="investmentRisk" value="Medium" type="checkbox" />
-              <Field name="investmentRisk" value="Low" type="checkbox" />
-
               <Field name="commentAboutInvestmentRisk" as={TextField} multiline rows={3} rowsMax={5} />
               
               <Field name="dependents" as={TextField} select>
@@ -42,8 +40,8 @@ export function FormDemo() {
                 <MenuItem value={5}>5</MenuItem>
               </Field>
 
-              <Field name="acceptedTermsAndConditions" type="checkbox" />
-              
+              <CustomCheckbox name="acceptedTermsAndConditions" label="Accept Terms & Conditions" />
+
               <pre>{JSON.stringify(values, null, 4)}</pre>
             </Form>
           )}
@@ -53,6 +51,17 @@ export function FormDemo() {
   )
 }
 
-export function CustomCheckbox() {
-  return <FormControlLabel control={ <Checkbox />} label="Secondary" />
+export function CustomCheckbox(props: CustomCheckboxProps) {
+  const [field] = useField({
+    name: props.name,
+    type: 'checkbox',
+    value: props.value
+  })
+  return <FormControlLabel control={ <Checkbox {...props} {...field} />} label={props.label} />
+}
+
+export interface CustomCheckboxProps extends CheckboxProps {
+  name: string;
+  value?: string | number;
+  label?: string;
 }
