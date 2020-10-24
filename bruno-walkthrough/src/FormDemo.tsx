@@ -37,12 +37,12 @@ export function FormDemo() {
           }
           initialValues={initialValues}
           onSubmit={(values, formikHelpers) => {
-            return new Promise(acc => {
+            return new Promise(res => {
               setTimeout(() => {
                 console.log("values", values)
                 console.log("helpers", formikHelpers)
                 console.log('===')
-                acc();
+                res();
               }, 3000)
             })
           }}>

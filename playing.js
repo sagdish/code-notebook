@@ -132,10 +132,69 @@ const obj2 = {
   age: 23,
 };
 
-console.log(JSON.stringify(obj1) === JSON.stringify(obj2));
-console.log(obj2);
+const strObj = JSON.stringify(obj1);
+
+const parsedObj = JSON.parse(strObj);
+
+// console.log(JSON.stringify(obj1) === JSON.stringify(obj2));
+// console.log(strObj);
+// console.log(parsedObj);
 
 // to get desired percentage:
 // function percentage(percent, total) {
 //   return ((percent/ 100) * total).toFixed(2)
 // }
+
+
+// function hashMap(queryType, query) {
+//   let obj = {}
+  
+//   for (let i = 0; i < queryType.length; i++) {
+//       const type = queryType[i];
+//       if (type === "insert") {
+//           obj[ query[i[0]] ] = query[i[1]];
+//       } else if (type === "addToValue") {
+//           for ()
+//       }
+//   }
+  
+  
+  // for (const type of queryType) {
+      
+  // }
+// }
+
+// add to value
+// Object.keys(spy).forEach(key => {
+//   spy[key] = "redacted");
+// });
+
+
+// function renameKeys(obj, newKeys) {
+//   const keyValues = Object.keys(obj).map(key => {
+//     const newKey = newKeys[key] || key;
+//     return { [newKey]: obj[key] };
+//   });
+//   return Object.assign({}, ...keyValues);
+// }
+// Usage:
+
+// const obj = { a: "1", b: "2" };
+// const newKeys = { a: "A", c: "C" };
+// const renamedObj = renameKeys(obj, newKeys);
+// console.log(renamedObj);
+// // {A:"1", b:"2"}
+
+const obj = { 1: 23, 2: 24, 3: 'string', 4: false}
+console.log(obj)
+
+
+const arr = Object.entries(obj).map( ([key, value]) => {
+  const newKey = Number(key) + 1
+  return {[newKey]: value} 
+})
+// console.log(arr)
+
+const modObj = Object.assign({}, ...arr)
+
+console.log(modObj);
