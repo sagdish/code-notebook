@@ -186,7 +186,7 @@ const parsedObj = JSON.parse(strObj);
 // // {A:"1", b:"2"}
 
 const obj = { 1: 23, 2: 24, 3: 'string', 4: false}
-console.log(obj)
+// console.log(obj)
 
 
 const arr = Object.entries(obj).map( ([key, value]) => {
@@ -197,4 +197,16 @@ const arr = Object.entries(obj).map( ([key, value]) => {
 
 const modObj = Object.assign({}, ...arr)
 
-console.log(modObj);
+// console.log(modObj);
+
+const bar = (str) => {
+  console.log(str)
+}
+
+const foo = (fn) => {
+  fn('bar');
+  console.log('foo');
+}
+
+foo(bar);
+const input = prompt('enter', 'second str');
