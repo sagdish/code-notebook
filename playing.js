@@ -213,7 +213,7 @@ const foo = (fn) => {
 // // Promises
 
 const promise = new Promise((resolved, rejected) => {
-  if (!true) {
+  if (true) {
     resolved("It worked")
   } else {
     rejected("Sorry ...")
@@ -223,7 +223,10 @@ const promise = new Promise((resolved, rejected) => {
 
 promise
   .then(hooray => {
-    console.log(hooray)
+    return hooray + '!'
+  })
+  .then(res => {
+    console.log(res)
   })
   .catch(err => console.log(err))
 
