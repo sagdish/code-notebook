@@ -230,18 +230,38 @@ const promise = new Promise((resolved, rejected) => {
 //   })
 //   .catch(err => console.log(err))
 
-  const promise2 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, "I'm first");
-  })
+  // const promise2 = new Promise((resolve, reject) => {
+  //   setTimeout(resolve, 100, "I'm first");
+  // })
 
-  const promise3 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 1000, "I'm second");
-  })
+  // const promise3 = new Promise((resolve, reject) => {
+  //   setTimeout(resolve, 1000, "I'm second");
+  // })
 
-  const promise4 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 4000, "I'm latest!");
-  })
+  // const promise4 = new Promise((resolve, reject) => {
+  //   setTimeout(resolve, 4000, "I'm latest!");
+  // })
 
-  Promise.all([promise, promise2, promise3, promise4])
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+  // Promise.all([promise, promise2, promise3, promise4])
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err));
+
+
+const urls = [
+  'https://jsonplaceholder.typicode.com/users',
+  'https://jsonplaceholder.typicode.com/posts',
+  'https://jsonplaceholder.typicode.com/albums',
+]
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+//   .then(res => res.json())
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err))
+
+Promise.all(urls.map(url => {
+  return fetch(url)
+    .then(res => res.json())
+    .catch(err => console.log(err))
+}))
+  .then(response => console.log(response))
+  .catch(err => console.log(err))
