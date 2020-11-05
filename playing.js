@@ -221,13 +221,27 @@ const promise = new Promise((resolved, rejected) => {
 });
 
 
-promise
-  .then(hooray => {
-    return hooray + '!'
-  })
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => console.log(err))
+// promise
+//   .then(hooray => {
+//     return hooray + '!'
+//   })
+//   .then(res => {
+//     console.log(res)
+//   })
+//   .catch(err => console.log(err))
 
-  
+  const promise2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, "I'm first");
+  })
+
+  const promise3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, "I'm second");
+  })
+
+  const promise4 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 4000, "I'm latest!");
+  })
+
+  Promise.all([promise, promise2, promise3, promise4])
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
