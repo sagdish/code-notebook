@@ -208,5 +208,23 @@ const foo = (fn) => {
   console.log('foo');
 }
 
-foo(bar);
-const input = prompt('enter', 'second str');
+// foo(bar);
+
+// // Promises
+
+const promise = new Promise((resolved, rejected) => {
+  if (!true) {
+    resolved("It worked")
+  } else {
+    rejected("Sorry ...")
+  }
+});
+
+
+promise
+  .then(hooray => {
+    console.log(hooray)
+  })
+  .catch(err => console.log(err))
+
+  
