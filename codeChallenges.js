@@ -31,3 +31,5 @@ function findPairs(arr, num) {
 }
 
 console.log(findPairs([3, 5, 2, -4, 8, 11], 7))
+
+// solve this: A Sawtooth Sequence 
