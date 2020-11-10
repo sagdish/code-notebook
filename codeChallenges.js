@@ -32,4 +32,20 @@ function findPairs(arr, num) {
 
 console.log(findPairs([3, 5, 2, -4, 8, 11], 7))
 
+
+// longest string challenge:
+function allLongestStrings(inputArray) {
+  let longest = 0;
+  let obj = {};
+  inputArray.forEach(el => {
+      longest = Math.max(longest, el.length);
+      if (obj[el.length]) {
+          obj[el.length].push(el);
+      } else {
+          obj[el.length] = [el]
+      }
+  })
+  return obj[longest]
+}
+
 // solve this: A Sawtooth Sequence 
