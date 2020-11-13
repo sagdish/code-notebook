@@ -48,8 +48,16 @@ function allLongestStrings(inputArray) {
   return obj[longest]
 }
 
-// solve this: A Sawtooth Sequence 
 
+// regular code challenge solution:
+function alternatingSums(a) {
+  const left = [], right = [];
+  const sum = (a, b) => a + b;
+  a.forEach((weight, i) => i % 2 === 0 ? left.push(weight) : right.push(weight))
+  return [left.reduce(sum, 0), right.reduce(sum, 0)];
+}
+
+// solve this: A Sawtooth Sequence 
 
 // solve this: 
 // Write a function that reverses characters in (possibly nested) parentheses in the input string.
