@@ -64,4 +64,14 @@ function alternatingSums(a) {
 
 // Input strings will always be well-formed with matching ()s.
 
-// Given a rectangular matrix of characters, add a border of asterisks(*) to it.
+// Given a rectangular matrix of characters, add a border of asterisks(*) to it:
+function addBorder(picture) {
+  const res = [];
+  const length = picture[0] ? picture[0].length : 0;
+  
+  res.push('*'.repeat(length + 2))
+  picture.forEach(el => (res.push(`*${el}*`)))
+  res.push('*'.repeat(length + 2))
+  
+  return res;
+}
