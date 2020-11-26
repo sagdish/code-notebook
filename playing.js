@@ -258,10 +258,44 @@ const urls = [
 //   .then(res => console.log(res))
 //   .catch(err => console.log(err))
 
-Promise.all(urls.map(url => {
-  return fetch(url)
-    .then(res => res.json())
-    .catch(err => console.log(err))
-}))
-  .then(response => console.log(response))
-  .catch(err => console.log(err))
+// Promise.all(urls.map(url => {
+//   return fetch(url)
+//     .then(res => res.json())
+//     .catch(err => console.log(err))
+// }))
+//   .then(response => console.log(response))
+//   .catch(err => console.log(err))
+
+//   async function boo(urls) {
+//     const result = await Promise.all(urls.map(url => (
+//       await fetch(url).then(res => res.json())
+//     )))
+
+//     console.log(resul)
+//   }
+
+//   async function boo(urls) {
+//     const result = await Promise.all(urls.map(url => (
+//       await fetch(url)
+//     )))
+
+//     console.log(resul)
+//   }
+function randomUniqueNum(range, outputCount) {
+ 
+  let arr = []
+  for (let i = 1; i <= range; i++) {
+    arr.push(i)
+  }
+  
+  let result = [];
+
+  for (let i = 1; i <= outputCount; i++) {
+    let random = Math.floor((Math.random() * (range - i)) + 1);
+    result.push(arr[random]);
+    arr[random] = arr[range - i];
+  }
+
+  return result;
+}
+console.log(randomUniqueNum(7, 3))
