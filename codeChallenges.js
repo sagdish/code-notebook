@@ -112,3 +112,45 @@ function addBorder(picture) {
 
 // Given a string, find out if its characters can be rearranged to form a palindrome.
 
+// still not fully working:
+function palindromeRearranging(inputString) {
+  // create object
+  // count number of characters
+      // if inputstring is even - even number of strings
+      // if inputstring is odd - also even except one character
+      // except if string has only one character - applies to both cases
+  // if neither of this cases, return false
+  
+  const obj = {};
+  const length = inputString.length;
+  const resultObj = {
+      isOdd: length % 2 !== 0 ? false : true,
+      palin: true,
+      center: null,
+  }
+  
+  for (let i = 0; i < length; i++) {
+      const current = inputString[i];
+      if (obj[current]) {
+          obj[current] += 1;
+      } else {
+          obj[current] = 1;
+      }
+      if (obj[current] === length) return true;
+  }
+  
+  Object.values(obj).forEach(val => {
+      if (resultObj.isOdd && val % 2 !== 0 && !resultObj.center) {
+          resultObj.center = true;
+      } else if (val % 2 !== 0) {
+          resultObj.palin = false;
+          return;
+      } else {
+          resultObj.palin = false;
+          return;
+      }
+  })
+  
+  return resultObj.palin
+}
+
