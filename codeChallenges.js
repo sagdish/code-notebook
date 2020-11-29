@@ -112,22 +112,19 @@ function addBorder(picture) {
 
 // Given a string, find out if its characters can be rearranged to form a palindrome.
 
-// still not fully working:
+// solved, but code is ugly and super unreadable:
 function palindromeRearranging(inputString) {
   // create object
   // count number of characters
       // if inputstring is even - even number of strings
-      // if inputstring is odd - also even except one character
+      // if inputstring is odd - also even Except one character
       // except if string has only one character - applies to both cases
   // if neither of this cases, return false
   
   const obj = {};
   const length = inputString.length;
-  const resultObj = {
-      isOdd: length % 2 !== 0 ? false : true,
-      palin: true,
-      center: null,
-  }
+  const isOdd = length % 2 !== 0;
+  let notEvenCount = 0;
   
   for (let i = 0; i < length; i++) {
       const current = inputString[i];
@@ -139,18 +136,25 @@ function palindromeRearranging(inputString) {
       if (obj[current] === length) return true;
   }
   
-  Object.values(obj).forEach(val => {
-      if (resultObj.isOdd && val % 2 !== 0 && !resultObj.center) {
-          resultObj.center = true;
-      } else if (val % 2 !== 0) {
-          resultObj.palin = false;
-          return;
-      } else {
-          resultObj.palin = false;
-          return;
-      }
+  let oneKey = {
+      key: null,
+      falsy: null
+  }
+  
+  Object.entries(obj).forEach( ([key, val]) => {     
+     if (val % 2 !== 0) {
+         if (oneKey.key === null || oneKey.key === key) {
+              notEvenCount++;
+              oneKey.key = key;
+         } else {
+             oneKey.falsy = true;
+         }
+     }
   })
   
-  return resultObj.palin
+  if (oneKey.falsy) return false
+  
+  
+  return isOdd ? (notEvenCount % 2 === 1 ? true : false) 
+      : (notEvenCount >= 1 ? false : true)
 }
-
