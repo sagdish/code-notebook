@@ -158,3 +158,22 @@ function palindromeRearranging(inputString) {
   return isOdd ? (notEvenCount % 2 === 1 ? true : false) 
       : (notEvenCount >= 1 ? false : true)
 }
+
+
+/*
+Call two arms equally strong if the heaviest weights they each are able to lift are equal.
+
+Call two people equally strong if their strongest arms are equally strong (the strongest arm can be both the right and the left), and so are their weakest arms.
+
+Given your and your friend's arms' lifting capabilities find out if you two are equally strong.
+*/
+
+function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
+  const yourStrong = Math.max(yourLeft, yourRight)
+  const yourWeak = Math.min(yourLeft, yourRight)
+  
+  const friendStrong = Math.max(friendsLeft, friendsRight)
+  const friendWeak = Math.min(friendsLeft, friendsRight)
+  
+  return yourStrong === friendStrong && yourWeak === friendWeak
+}
