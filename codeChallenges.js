@@ -177,3 +177,6 @@ function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
   
   return yourStrong === friendStrong && yourWeak === friendWeak
 }
+
+
+// Given an array of integers, find the maximal absolute difference between any two of its adjacent elements:
