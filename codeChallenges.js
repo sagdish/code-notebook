@@ -180,3 +180,15 @@ function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
 
 
 // Given an array of integers, find the maximal absolute difference between any two of its adjacent elements:
+function arrayMaximalAdjacentDifference(inputArray) {
+  let max = 0;
+  
+  for (let i = 0; i < inputArray.length -1; i++) {
+      const curr = inputArray[i]
+      const adj = inputArray[i + 1]
+      max = Math.max(max, Math.abs(curr - adj))
+  }
+  
+  return max;   
+}
+
