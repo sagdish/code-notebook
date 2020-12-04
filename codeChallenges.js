@@ -192,3 +192,37 @@ function arrayMaximalAdjacentDifference(inputArray) {
   return max;   
 }
 
+/* 
+An IP address is a numerical label assigned to each device (e.g., computer, printer) participating in a computer network that uses the Internet Protocol for communication. There are two versions of the Internet protocol, and thus two versions of addresses. One of them is the IPv4 address.
+
+Given a string, find out if it satisfies the IPv4 address naming rules.
+*/
+function isIPv4Address(inputString) {
+  // convert to array
+  // loop array
+      // assign el to vars until dot
+      // 4 vars total
+      // starts with number
+      // in the range 0-255
+  // if one the requirements are not met, return false
+  // otherwise return true
+  
+  const arr = inputString.split('.')
+  if (arr.length !== 4) return false;
+  console.log(arr)
+  for (let i = 0; i < arr.length; i++) {
+      const el = arr[i]
+      if (el) {
+          console.log(el)
+          if ((Number(el) > 255 || !Number(el)) && el !== '0') {
+              return false
+          }
+          if (el[0] === '0' && el.length > 1) return false;
+      } else {
+          return false;
+      }
+  }
+  
+  
+  return true;
+}
