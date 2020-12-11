@@ -52,7 +52,7 @@ function startExercise() {
   console.log("started");
   started = true;
   completed = false;
-  setIntervalX(breatheAnimation, totalTime, 4);
+  setIntervalX(breatheAnimation, totalTime, 1);
   //show stop btn
   stop.className = "stopBtn visible";
   start.className = "stopBtn non-visible";
@@ -133,13 +133,13 @@ function setIntervalX(callback, delay, repetitions) {
 
   const intervalId = window.setInterval(() => {
     // call again
-    callback();
-    x++;
     if (x >= repetitions) {
       window.clearInterval(intervalId);
       completed = true;
+    } else {
+      callback();
+      x++;
     }
   }, delay);
   intervalsArr.push(intervalId);
-  // stop.addEventListener("click", () => stopExercise(intervalId));
 }
