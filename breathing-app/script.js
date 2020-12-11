@@ -25,6 +25,10 @@ let completed = false;
 let timersArr = [];
 let intervalsArr = [];
 
+// sounds: 
+const inhaleSound = document.getElementById('inhale-sound')
+const exhaleSound = document.getElementById('exhale-sound')
+
 start.addEventListener("click", startExercise);
 stop.addEventListener("click", stopExercise);
 
@@ -49,11 +53,11 @@ function stopExercise() {
   intervalsArr.length = 0;
 
   // stop all sounds:
-  document.getElementById('inhale-sound').pause();
-  document.getElementById('inhale-sound').currentTime = 0;
+  inhaleSound.pause();
+  inhaleSound.currentTime = 0;
 
-  document.getElementById('exhale-sound').pause();
-  document.getElementById('exhale-sound').currentTime = 0
+  exhaleSound.pause();
+  exhaleSound.currentTime = 0
 }
 
 function startExercise() {
@@ -74,7 +78,7 @@ function breatheAnimation() {
   pointer[0].className = "pointer-container goAround";
   countDown(4);
   // play sound
-  document.getElementById('inhale-sound').play();
+  inhaleSound.play();
 
   timersArr.push(
     setTimeout(() => {
@@ -89,7 +93,7 @@ function breatheAnimation() {
           console.log('completed', completed)
 
           // play sound
-          document.getElementById('exhale-sound').play();
+          exhaleSound.play();
 
           if (completed) {
             completed = false;
