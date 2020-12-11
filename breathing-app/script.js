@@ -76,6 +76,7 @@ function breatheAnimation() {
           text.innerText = "Exhale";
           countDown(8);
           container.className = "container shrink";
+          console.log('completed', completed)
 
           if (completed) {
             completed = false;
@@ -128,14 +129,20 @@ function setIntervalX(callback, delay, repetitions) {
   if (kickOf) {
     kickOf = false;
     callback();
-    x++;
+    x++; 
+    if (x >= repetitions) {
+      completed = true;
+      console.log('start', completed)
+    }
   }
 
   const intervalId = window.setInterval(() => {
     // call again
     if (x >= repetitions) {
-      window.clearInterval(intervalId);
       completed = true;
+      console.log('after in if', completed)
+      window.clearInterval(intervalId);
+
     } else {
       callback();
       x++;
