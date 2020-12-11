@@ -18,7 +18,7 @@ const totalTime = 19000;
 const inhale = 4000;
 const hold = 7000;
 const exhale = 8000;
-const cycles = 3;
+const cycles = 5;
 let kickOf = true;
 let started = false;
 let completed = false;
@@ -33,6 +33,7 @@ function stopExercise() {
   started = false;
   text.innerText = "";
   counter.innerText = "";
+  // reset kickOF
   kickOf = true;
   container.className = "container stop";
   // pointer[0].className = "pointer-container goBack";
@@ -52,7 +53,7 @@ function startExercise() {
   console.log("started");
   started = true;
   completed = false;
-  setIntervalX(breatheAnimation, totalTime, 1);
+  setIntervalX(breatheAnimation, totalTime, cycles);
   //show stop btn
   stop.className = "stopBtn visible";
   start.className = "stopBtn non-visible";
@@ -124,29 +125,26 @@ function countDown(cycle) {
 
 function setIntervalX(callback, delay, repetitions) {
   let x = 0;
-
+  let first = true;
   // in the beginning start right away
-  if (kickOf) {
+  if (kickOf && first) {
     kickOf = false;
+    first = false;
+    x++;
     callback();
-    x++; 
-    if (x >= repetitions) {
-      completed = true;
-      console.log('start', completed)
-    }
   }
 
   const intervalId = window.setInterval(() => {
     // call again
+    x++;
+    callback();
     if (x >= repetitions) {
       completed = true;
       console.log('after in if', completed)
       window.clearInterval(intervalId);
-
-    } else {
-      callback();
-      x++;
-    }
+    } 
+    
   }, delay);
+
   intervalsArr.push(intervalId);
 }
