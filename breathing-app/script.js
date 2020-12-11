@@ -18,7 +18,7 @@ const totalTime = 19000;
 const inhale = 4000;
 const hold = 7000;
 const exhale = 8000;
-const cycles = 5;
+const cycles = 4;
 let kickOf = true;
 let started = false;
 let completed = false;
@@ -47,6 +47,13 @@ function stopExercise() {
   intervalsArr.forEach((interval) => clearInterval(interval));
   timersArr.length = 0;
   intervalsArr.length = 0;
+
+  // stop all sounds:
+  document.getElementById('inhale-sound').pause();
+  document.getElementById('inhale-sound').currentTime = 0;
+
+  document.getElementById('exhale-sound').pause();
+  document.getElementById('exhale-sound').currentTime = 0
 }
 
 function startExercise() {
@@ -66,6 +73,8 @@ function breatheAnimation() {
   container.className = "container grow";
   pointer[0].className = "pointer-container goAround";
   countDown(4);
+  // play sound
+  document.getElementById('inhale-sound').play();
 
   timersArr.push(
     setTimeout(() => {
@@ -78,6 +87,9 @@ function breatheAnimation() {
           countDown(8);
           container.className = "container shrink";
           console.log('completed', completed)
+
+          // play sound
+          document.getElementById('exhale-sound').play();
 
           if (completed) {
             completed = false;
@@ -148,3 +160,30 @@ function setIntervalX(callback, delay, repetitions) {
 
   intervalsArr.push(intervalId);
 }
+
+
+// const sounds = ['inhale', 'exhale']
+
+// sounds.forEach(sound => {
+//     const btn = document.createElement('button')
+//     btn.classList.add('btn')
+
+//     btn.innerText = sound
+
+//     btn.addEventListener('click', () => {
+//         stopSongs()
+
+//         document.getElementById(sound).play()
+//     })
+
+//     document.getElementById('buttons').appendChild(btn)
+// })
+
+// function stopSongs() {
+//     sounds.forEach(sound => {
+//         const song = document.getElementById(sound)
+
+//         song.pause()
+//         song.currentTime = 0;
+//     })
+// }
