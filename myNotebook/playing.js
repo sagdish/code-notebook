@@ -247,11 +247,11 @@ const promise = new Promise((resolved, rejected) => {
   //   .catch(err => console.log(err));
 
 
-const urls = [
-  'https://jsonplaceholder.typicode.com/users',
-  'https://jsonplaceholder.typicode.com/posts',
-  'https://jsonplaceholder.typicode.com/albums',
-]
+// const urls = [
+//   'https://jsonplaceholder.typicode.com/users',
+//   'https://jsonplaceholder.typicode.com/posts',
+//   'https://jsonplaceholder.typicode.com/albums',
+// ]
 
 // fetch('https://jsonplaceholder.typicode.com/users')
 //   .then(res => res.json())
@@ -281,21 +281,60 @@ const urls = [
 
 //     console.log(resul)
 //   }
-function randomUniqueNum(range, outputCount) {
+
+// function randomUniqueNum(range, outputCount) {
  
-  let arr = []
-  for (let i = 1; i <= range; i++) {
-    arr.push(i)
-  }
+//   let arr = []
+//   for (let i = 1; i <= range; i++) {
+//     arr.push(i)
+//   }
   
-  let result = [];
+//   let result = [];
 
-  for (let i = 1; i <= outputCount; i++) {
-    let random = Math.floor((Math.random() * (range - i)) + 1);
-    result.push(arr[random]);
-    arr[random] = arr[range - i];
+//   for (let i = 1; i <= outputCount; i++) {
+//     let random = Math.floor((Math.random() * (range - i)) + 1);
+//     result.push(arr[random]);
+//     arr[random] = arr[range - i];
+//   }
+
+//   return result;
+// }
+// console.log(randomUniqueNum(7, 3))
+
+
+const urls = [
+  'https://jsonplaceholder.typicode.com/users',
+  'https://jsonplaceholder.typicode.com/posts',
+  'https://jsonplaceholder.typicode.com/albums',
+]
+
+// Promise.all(urls.map(url => {
+//   fetch(url).then(res => res.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err))
+// }))
+
+// Promise.all(urls.map(url => {
+//   return fetch(url).then( response => response.json())
+// }))
+//   .then(arr => console.log(arr))
+
+const getData = async function(urls) {
+  for await (let request of urls) {
+    const data = await fetch(request)
+    const result = await data.json()
+    console.log(result)
   }
-
-  return result;
 }
-console.log(randomUniqueNum(7, 3))
+
+const obj3 = {
+  name: 'bolb',
+  age: 123,
+  sex: 'neutral',
+  height: 3.4,
+  skin: 'dark'
+}
+
+const { name:alias, ...rest} = obj3;
+
+console.log('alias: ', alias, 'rest: ', rest)
