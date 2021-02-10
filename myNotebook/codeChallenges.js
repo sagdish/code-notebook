@@ -226,3 +226,23 @@ function isIPv4Address(inputString) {
   
   return true;
 }
+
+
+
+function indexEqualsValueSearch(arr) {
+  let start = 0
+  let end = arr.length -1
+  
+  while (start <= end) {
+    const i = Math.round((start + end) /2)
+    if (arr[i] - i < 0) {
+      start = i + 1
+    } else if (arr[i] - i === 0 && (i === 0 || arr[i-1] - (i-1) < 0)) {
+      return i
+    } else {
+      end = i-1
+    }
+  }
+  
+  return -1
+}
