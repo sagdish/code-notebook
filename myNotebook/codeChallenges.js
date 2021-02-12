@@ -246,3 +246,72 @@ function indexEqualsValueSearch(arr) {
   
   return -1
 }
+
+
+function findPairsWithGivenDifference(arr, k) {
+  let result = [];
+  let sets = new Set();
+  
+  for (let n of arr) {
+    sets.add(n);
+  }
+  
+  for (let y of arr) {
+    let x = y + k;
+    if (sets.has(x)) {
+      result.push([x, y])
+    }
+  }
+  
+  return result;
+}
+
+console.log(findPairsWithGivenDifference([0, -1, -2, 2, 1], 1))
+
+
+
+function findDuplicates(arr1, arr2) {
+  /*
+    if length 0 or 1 return empty arr
+    
+    loop arr1
+    for each el in arr find if val exist in arr2
+    if yes push to res arr
+  */
+  
+  
+  /*
+  const res = []
+  if (arr1.length <= 1) return res
+  
+  for (let i = 0; i < arr1.length; i++) {
+    const curr = arr1[i]
+    
+    if (arr2.indexOf(curr) !== -1) res.push(curr)
+  }
+  
+  return res;
+  */
+  
+  const res = []
+  const obj = {}
+  
+  for (let i = 0; i < arr1.length; i++) {
+    const curr = arr1[i]
+    
+    if (obj[curr]) {
+      obj[curr] += 1
+    } else {
+      obj[curr] = 1 
+    }
+  }
+  
+  for (let el of arr2) {
+    if ( obj[el]) res.push(el)
+  }
+  
+  
+  return res;
+}
+
+console.log(findDuplicates([1, 2, 3, 5, 6, 7], [3, 6, 7, 8, 20]))
