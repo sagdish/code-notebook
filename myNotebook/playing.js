@@ -337,4 +337,71 @@ const obj3 = {
 
 const { name:alias, ...rest} = obj3;
 
-console.log('alias: ', alias, 'rest: ', rest)
+// console.log('alias: ', alias, 'rest: ', rest)
+
+
+// 2021 April reiteration:
+
+function newFoo(a1, a2) {
+  /*
+  this is dangerous
+  do not use 'arguments' keyword!
+  */
+  console.log('arguments -> ', arguments)
+
+  /*
+  analogues
+  */
+
+  console.log(Array.from(arguments))
+}
+
+function anotherFoo(a, b, ...args) {
+  // this will become an array
+  console.log(a, b)
+  console.log('args ', args)
+}
+anotherFoo(1, 2, 3, 4, 5)
+// newFoo('boo', 'baa')
+
+
+/*
+ this
+ 1: gives methods access to their object // - who called me?
+ 2: execute same code for multiple objects
+
+
+
+ function sayname() {
+   console.log(this.name)
+ }
+
+ const name = 'Bob'
+
+ const obj1 = {
+   name: 'Sarah',
+   callme: sayname
+ }
+
+ const obj2 = {
+   name: 'Russel',
+   callme: sayname,
+ }
+
+ obj2.callme()
+
+
+
+ another example:
+
+ const obj = {
+    name: "bob",
+    say: function() {
+        console.log('1', this)
+        function foo() {
+            console.log('2', this)
+        }
+        return foo.bind(this)()
+    }
+  }
+*/
