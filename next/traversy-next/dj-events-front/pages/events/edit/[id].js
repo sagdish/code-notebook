@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { FaImage } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { API_URL } from '@/config/index'
@@ -19,6 +21,10 @@ export default function EditEventPage({ evt }) {
     description: evt.description,
   })
 
+  const [imagePreview, setImagePreview] = useState(
+    evt.image ? evt.image.formats.thumbnail.url : null
+  )
+
   const router = useRouter()
 
   const handleSubmit = async e => {
@@ -35,8 +41,8 @@ export default function EditEventPage({ evt }) {
       return
     }
 
-    const res = await fetch(`${API_URL}/events`, {
-      method: 'POST',
+    const res = await fetch(`${API_URL}/events/${evt.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -136,8 +142,27 @@ export default function EditEventPage({ evt }) {
           />
         </div>
 
-        <input type='submit' value='Add Event' className='btn' />
+        <input type='submit' value='Update Event' className='btn' />
       </form>
+
+      <h2>Event Image</h2>
+      {imagePreview ?
+        <Image 
+          src={imagePreview}
+          height={100}
+          width={170}
+        /> 
+        :
+        <div>
+          <p>No image was uploaded</p>
+        </div>
+      }
+      
+      <div>
+        <button className='btn-secondary'>
+          <FaImage /> Set image
+        </button>
+      </div>
     </Layout>
   )
 }
