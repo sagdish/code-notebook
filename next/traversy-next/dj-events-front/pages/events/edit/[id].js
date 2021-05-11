@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ImageUpload from '@/components/ImageUpload'
 import Modal from '@/components/Modal'
 import { API_URL } from '@/config/index'
 import formatDate from '@/utils/formatDate'
@@ -27,7 +28,6 @@ export default function EditEventPage({ evt }) {
   )
 
   const [showModal, setShowModal] = useState(false)
-
 
   const router = useRouter()
 
@@ -64,6 +64,13 @@ export default function EditEventPage({ evt }) {
   const handleInputChange = e => {
     const {name, value} = e.target
     setValues({ ...values, [name]: value })
+  }
+
+  const imageUploaded = async e => {
+    const res = await fetch(`${API_URL}/events/${evt.id}`)
+    const data = await res.json()
+    setImagePreview(data.image.formats.thumbnail.url)
+    setShowModal(false)
   }
 
   return (
@@ -169,7 +176,7 @@ export default function EditEventPage({ evt }) {
       </div>
 
       <Modal show={showModal} title={'my title'} onClose={() => setShowModal(false)}>
-        Image upload
+        <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
       </Modal>
     </Layout>
   )
