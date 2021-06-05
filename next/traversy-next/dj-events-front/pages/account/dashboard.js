@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {useRouter} from 'next/router'
 import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
@@ -7,6 +8,8 @@ import styles from '@/styles/Dashboard.module.css'
 
 export default function DashboardPage({ events, token }) {
   const router = useRouter()
+  const [evts, setEvts] = useState(events)
+  console.log('evts', evts)
 
   const deleteEvent = async id => {
     console.log('delete')
@@ -23,7 +26,8 @@ export default function DashboardPage({ events, token }) {
       if (!res.ok) {
         toast.error(`Something went wrong: ${data.message}`)
       } else {
-        router.reload()
+        const newEvts = evts.filter(evt => evt.id !== id)
+        setEvts(newEvts)
       }
     }
   }
@@ -33,7 +37,7 @@ export default function DashboardPage({ events, token }) {
       <div className={styles.dash}>
         <h1>Dashboard</h1>
         <h3>My Events</h3>
-        {events.map(evt => (
+        {evts.map(evt => (
           <DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvent} />
         ))}
       </div>
