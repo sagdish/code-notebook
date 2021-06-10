@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import {useRouter} from 'next/router'
 import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
@@ -7,9 +6,7 @@ import DashboardEvent from '@/components/DashboardEvent'
 import styles from '@/styles/Dashboard.module.css'
 
 export default function DashboardPage({ events, token }) {
-  const router = useRouter()
   const [evts, setEvts] = useState(events)
-  console.log('evts', evts)
 
   const deleteEvent = async id => {
     console.log('delete')
