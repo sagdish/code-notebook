@@ -10,17 +10,40 @@ export default function EventMap({evt}) {
   const [loading, setLoading] = useState(true)
   const [viewport, setViewport] = useState({
     latitude: 41.34440380234907, 
-    longtitude: 69.31312093704767,
+    longitude: 69.31312093704767,
     width: '100%',
     height: '500px',
     zoom: 12
   })
 
+  useEffect(() => {
+    Geocode.fromAddress(evt.address).then(
+      res => {
+        const {lat, lng} = res.results[0].geometry.location
+        console.log(lat, lng)
+        setLat(lat)
+        setLng(lng)
+        setViewport({...viewport, latitude: lat, longitude: lng})
+        setLoading(false)
+      },
+      error => {
+        console.error(error)
+      }
+    )
+  }, [])
+
   Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY)
 
+  if (loading) return false
+
+  console.log(lat, lng)
+
   return (
-    <div>
-      <h2>Map</h2>
-    </div>
+  <ReactMapGl {...viewport} mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+    onViewportChange={vp => setViewport(vp)}>
+      <Marker key={evt.id} latitude={lat} longitude={lng}>
+        <Image src='/images/pin.svg' width={30} height={30} />
+      </Marker>
+    </ReactMapGl>
   )
 }
