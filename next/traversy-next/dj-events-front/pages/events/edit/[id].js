@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { FaImage } from 'react-icons/fa'
 import Link from 'next/link'
@@ -12,6 +12,7 @@ import { parseCookies } from '@/helpers/index'
 import formatDate from '@/utils/formatDate'
 import styles from '@/styles/Form.module.css'
 import Layout from '@/components/Layout'
+import AuthContext from '@/context/AuthContext'
 
 export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
@@ -22,7 +23,12 @@ export default function EditEventPage({ evt, token }) {
     date: formatDate(evt.date),
     time: evt.time,
     description: evt.description,
+    id: evt.id
   })
+
+  const {edit, error} = useContext(AuthContext)
+
+  useEffect(() => error && toast.error(error))
 
   const [imagePreview, setImagePreview] = useState(
     evt.image ? evt.image.formats.thumbnail.url : null
@@ -46,25 +52,27 @@ export default function EditEventPage({ evt, token }) {
       return
     }
 
-    const res = await fetch(`${API_URL}/events/${evt.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(values)
-    })
+    edit({values})
 
-    if (!res.ok) {
-      if (res.status === 403 || res.status === 401) {
-        toast.error('Unauthorized')
-        return;
-      }
-      toast.error('Something Went Wrong')
-    } else {
-      const evt = await res.json()
-      router.push(`/events/${evt.slug}`)
-    }
+    // const res = await fetch(`${API_URL}/events/${evt.id}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   body: JSON.stringify(values)
+    // })
+
+    // if (!res.ok) {
+    //   if (res.status === 403 || res.status === 401) {
+    //     toast.error('Unauthorized')
+    //     return;
+    //   }
+    //   toast.error('Something Went Wrong')
+    // } else {
+    //   const evt = await res.json()
+    //   router.push(`/events/${evt.slug}`)
+    // }
   }
 
   const handleInputChange = e => {

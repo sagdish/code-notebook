@@ -46,13 +46,37 @@ export const AuthProvider = ({ children }) => {
       })
     })
     const data = await res.json()
-    console.log(data)
+    // console.log(data)
     
     if (res.ok) {
       setUser(data.user)
       router.push('/account/dashboard')
     } else {
       setError(data.message)
+      setError(null)
+    }
+
+  }
+
+  // edit
+  const edit = async ({values}) => {
+    const res = await fetch(`${NEXT_URL}/api/edit`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+       values
+      })
+    })
+    const data = await res.json()
+    // console.log(data)
+    
+    if (res.ok) {
+      console.log('in context, success', data)
+      router.push(`/events/${data.slug}`)
+    } else {
+      setError(data.error)
       setError(null)
     }
 
@@ -83,7 +107,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{user, error, register, login, logout, checkUserLoggedIn}}>
+    <AuthContext.Provider value={{user, error, register, login, edit, logout, checkUserLoggedIn}}>
       {children}
     </AuthContext.Provider>
   )
