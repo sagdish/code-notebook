@@ -2,7 +2,6 @@ import { parseCookies } from '@/helpers/index'
 import { API_URL } from '@/config/index'
 
 export default async (req, res) => {
-
   const {token} = parseCookies(req)
   const {values} = req.body
   
