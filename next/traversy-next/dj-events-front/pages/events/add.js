@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { parseCookies } from '@/helpers/index'
 import { API_URL } from '@/config/index'
 import styles from '@/styles/Form.module.css'
 import Layout from '@/components/Layout'
+import AuthContext from '@/context/AuthContext'
 
-export default function AddEventPage({ token }) {
+export default function AddEventPage() {
   const [values, setValues] = useState({
     name: '',
     performers: '',
@@ -18,6 +18,10 @@ export default function AddEventPage({ token }) {
     time: '',
     description: '',
   })
+
+  const { create, error } = useContext(AuthContext)
+
+  useEffect(() => error && toast.error(error))
 
   const router = useRouter()
 
@@ -35,24 +39,26 @@ export default function AddEventPage({ token }) {
       return
     }
 
-    const res = await fetch(`${API_URL}/events`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(values)
-    })
+    create({values})
 
-    if (!res.ok) {
-      if (res.status === 403 || res.status === 401) {
-        return toast.error('No token provided')
-      }
-      toast.error('Something Went Wrong')
-    } else {
-      const evt = await res.json()
-      router.push(`/events/${evt.slug}`)
-    }
+    // const res = await fetch(`${API_URL}/events`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`
+    //   },
+    //   body: JSON.stringify(values)
+    // })
+
+    // if (!res.ok) {
+    //   if (res.status === 403 || res.status === 401) {
+    //     return toast.error('No token provided')
+    //   }
+    //   toast.error('Something Went Wrong')
+    // } else {
+    //   const evt = await res.json()
+    //   router.push(`/events/${evt.slug}`)
+    // }
   }
 
   const handleInputChange = e => {
@@ -144,15 +150,4 @@ export default function AddEventPage({ token }) {
       </form>
     </Layout>
   )
-}
-
-
-export async function getServerSideProps({req}) {
-  const { token } = parseCookies(req)
-
-  return {
-    props: {
-      token
-    }
-  }
 }

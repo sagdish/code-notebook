@@ -81,6 +81,28 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // create 
+  const create = async ({values}) => {
+    const res = await fetch(`${NEXT_URL}/api/addevent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+       values
+      })
+    })
+    const data = await res.json()
+    // console.log(data)
+    
+    if (res.ok) {
+      router.push(`/events/${data.slug}`)
+    } else {
+      setError(data.error)
+      setError(null)
+    }
+  }
+
   // upload image:
   const imageUpload = async ({formData, token}) => {
     const res = await fetch(`${API_URL}/upload`, {
@@ -119,7 +141,17 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{user, error, register, login, edit, imageUpload, logout, checkUserLoggedIn}}>
+    <AuthContext.Provider value={{
+      user,
+      error,
+      register,
+      login,
+      edit,
+      create,
+      imageUpload,
+      logout,
+      checkUserLoggedIn
+    }}>
       {children}
     </AuthContext.Provider>
   )
