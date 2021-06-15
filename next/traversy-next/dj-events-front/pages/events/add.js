@@ -40,25 +40,6 @@ export default function AddEventPage() {
     }
 
     create({values})
-
-    // const res = await fetch(`${API_URL}/events`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${token}`
-    //   },
-    //   body: JSON.stringify(values)
-    // })
-
-    // if (!res.ok) {
-    //   if (res.status === 403 || res.status === 401) {
-    //     return toast.error('No token provided')
-    //   }
-    //   toast.error('Something Went Wrong')
-    // } else {
-    //   const evt = await res.json()
-    //   router.push(`/events/${evt.slug}`)
-    // }
   }
 
   const handleInputChange = e => {

@@ -23,6 +23,4 @@ export default async (req, res) => {
     } else {
       res.status(201).json(evt)
     }
-
-  
 }
