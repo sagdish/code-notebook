@@ -19,22 +19,11 @@ export default function ImageUpload({ evtId, imageUploaded, token}) {
     const result = await imageUpload({formData, token})
 
     if (result) {
+      console.log('successfully uploaded')
       imageUploaded()
     } else {
-      console.error('something went wrong')
+      console.error(`image isn't uploaed`)
     }
-
-    // const res = await fetch(`${API_URL}/upload`, {
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   },
-    //   body: formData
-    // })
-
-    // if (res.ok) {
-    //   imageUploaded()
-    // }
   }
 
   const handleFileChange = e => {

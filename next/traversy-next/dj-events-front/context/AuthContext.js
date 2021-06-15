@@ -92,11 +92,6 @@ export const AuthProvider = ({ children }) => {
     })
 
     return res.ok ? true : false
-
-    // const res = await fetch(`${NEXT_URL}/api/imageupload`, {
-    //   method: 'POST',
-    //   body: formData,
-    // })
   }
 
   //logout
