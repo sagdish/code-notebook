@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { NEXT_URL } from '@/config/index'
+import { API_URL } from '@/config/index'
 
 const AuthContext = createContext()
 
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify(user)
     })
     const data = await res.json()
-    console.log(data)
+    // console.log(data)
     
     if (res.ok) {
       setUser(data.user)
@@ -73,13 +74,29 @@ export const AuthProvider = ({ children }) => {
     // console.log(data)
     
     if (res.ok) {
-      console.log('in context, success', data)
       router.push(`/events/${data.slug}`)
     } else {
       setError(data.error)
       setError(null)
     }
+  }
 
+  // upload image:
+  const imageUpload = async ({formData, token}) => {
+    const res = await fetch(`${API_URL}/upload`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: formData
+    })
+
+    return res.ok ? true : false
+
+    // const res = await fetch(`${NEXT_URL}/api/imageupload`, {
+    //   method: 'POST',
+    //   body: formData,
+    // })
   }
 
   //logout
@@ -107,7 +124,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{user, error, register, login, edit, logout, checkUserLoggedIn}}>
+    <AuthContext.Provider value={{user, error, register, login, edit, imageUpload, logout, checkUserLoggedIn}}>
       {children}
     </AuthContext.Provider>
   )

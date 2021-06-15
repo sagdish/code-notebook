@@ -14,7 +14,7 @@ import styles from '@/styles/Form.module.css'
 import Layout from '@/components/Layout'
 import AuthContext from '@/context/AuthContext'
 
-export default function EditEventPage({ evt }) {
+export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
     name: evt.name,
     performers: evt.performers,
@@ -173,6 +173,7 @@ export default function EditEventPage({ evt }) {
         <ImageUpload
           evtId={evt.id} 
           imageUploaded={imageUploaded}
+          token={token}
         />
       </Modal>
     </Layout>
@@ -182,9 +183,11 @@ export default function EditEventPage({ evt }) {
 export async function getServerSideProps({params : {id}, req}) {
   const res = await fetch(`${API_URL}/events/${id}`)
   const evt = await res.json()
+  const {token} = parseCookies(req)
   return {
     props: {
       evt,
+      token,
     }
   }
 }
