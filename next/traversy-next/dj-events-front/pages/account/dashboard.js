@@ -8,7 +8,7 @@ import AuthContext from '@/context/AuthContext'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function DashboardPage({ events, token }) {
+export default function DashboardPage({ events }) {
   const [evts, setEvts] = useState(events)
 
   const {deleteEvent, error} = useContext(AuthContext)
@@ -52,8 +52,7 @@ export async function getServerSideProps({req}) {
 
   return {
     props: {
-      events,
-      token
+      events
     }
   }
 }
