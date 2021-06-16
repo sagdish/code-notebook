@@ -1,31 +1,26 @@
-import {useState} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
 import DashboardEvent from '@/components/DashboardEvent'
 import styles from '@/styles/Dashboard.module.css'
+import AuthContext from '@/context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function DashboardPage({ events, token }) {
   const [evts, setEvts] = useState(events)
 
-  const deleteEvent = async id => {
+  const {deleteEvent, error} = useContext(AuthContext)
+  useEffect(() => error && toast.error(error))
+
+  const deleteEvt = async id => {
     console.log('delete')
     if (confirm('Are you sure?')) {
-      const res = await fetch(`${API_URL}/events/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      deleteEvent({id})
 
-      const data = await res.json()
-
-      if (!res.ok) {
-        toast.error(`Something went wrong: ${data.message}`)
-      } else {
-        const newEvts = evts.filter(evt => evt.id !== id)
-        setEvts(newEvts)
-      }
+      const newEvts = evts.filter(evt => evt.id !== id)
+      setEvts(newEvts)
     }
   }
 
@@ -34,8 +29,9 @@ export default function DashboardPage({ events, token }) {
       <div className={styles.dash}>
         <h1>Dashboard</h1>
         <h3>My Events</h3>
+        <ToastContainer />
         {evts.map(evt => (
-          <DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvent} />
+          <DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvt} />
         ))}
       </div>
     </Layout>

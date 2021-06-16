@@ -103,6 +103,29 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // delete
+  const deleteEvent = async ({id}) => {
+    
+    const res = await fetch(`${NEXT_URL}/api/delete`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id
+      })
+    })
+    
+    const data = await res.json()
+
+    if (!res.ok) {
+      setError(data.error)
+      setError(null)
+    } else {
+      return 'deleted'
+    }
+  }
+
   // upload image:
   const imageUpload = async ({formData, token}) => {
     const res = await fetch(`${API_URL}/upload`, {
@@ -150,7 +173,8 @@ export const AuthProvider = ({ children }) => {
       create,
       imageUpload,
       logout,
-      checkUserLoggedIn
+      checkUserLoggedIn,
+      deleteEvent
     }}>
       {children}
     </AuthContext.Provider>
