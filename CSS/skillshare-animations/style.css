@@ -1,3 +1,56 @@
 .mybutton {
-  background-color: aquamarine;
+  background-color: purple;
+  height: 70px;
+  width: 240px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  transition-property: background-color;
+  transition-duration: 500ms;
+}
+
+.mybutton:hover {
+  background-color: royalblue;
+}
+
+
+/* more advanced transitions: */
+
+.container {
+  width: 900px;
+  border: 1px solid blue;
+}
+
+.move {
+  margin: 20px;
+  background-color: skyblue;
+  width: 120px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  color: red;
+  border-radius: 10px;
+  cursor: pointer;
+  transition-property: translate();
+  transition-duration: 2s;
+}
+
+#ease {
+  transition-timing-function: ease;
+}
+#linear {
+  transition-timing-function: linear;
+}
+#ease-in {
+  transition-timing-function: ease-in;
+}
+#ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+#ease-out {
+  transition-timing-function: ease-out;
+}
+
+.move:hover{
+  transform: translate(760px, 0)
 }
