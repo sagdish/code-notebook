@@ -5,12 +5,30 @@
   border: none;
   color: white;
   font-size: 20px;
-  transition-property: background-color;
-  transition-duration: 500ms;
+  transition-property: background-color color width;
+  transition-duration: 1000ms;
+  /* transition-delay: 500ms; */
+}
+
+.mybutton-two {
+  background-color: blue;
+  height: 70px;
+  width: 240px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  transition: transform 400ms ease-in, color 300ms ease-out 1s;
+}
+
+.mybutton-two:hover {
+  transform: scale(1.2);
+  color: red;
 }
 
 .mybutton:hover {
   background-color: royalblue;
+  color: black;
+  width: 400px;
 }
 
 
@@ -34,6 +52,7 @@
   transition-property: translate();
   transition-duration: 2s;
 }
+
 
 #ease {
   transition-timing-function: ease;
