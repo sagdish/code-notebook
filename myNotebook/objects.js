@@ -29,4 +29,15 @@ const arr = Object.entries(obj).map( ([key, value]) => {
   return [key, value]
 })
 
-console.log(arr);
+// console.log(arr);
+
+// SET
+const mySet = new Set() 
+mySet.add('string')
+
+mySet.add('new str')
+
+console.log(mySet.has('string'))
+console.log(mySet)
+
+console.log(mySet.size)

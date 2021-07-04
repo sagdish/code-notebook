@@ -361,7 +361,7 @@ function anotherFoo(a, b, ...args) {
   console.log(a, b)
   console.log('args ', args)
 }
-anotherFoo(1, 2, 3, 4, 5)
+// anotherFoo(1, 2, 3, 4, 5)
 // newFoo('boo', 'baa')
 
 
@@ -407,3 +407,13 @@ anotherFoo(1, 2, 3, 4, 5)
 */
 
 
+const newobj = {
+  name: 'alex',
+  callName: function() {
+    console.log(`hey ${this.name}`)
+  }
+}
+
+const boo = newobj.callName
+
+boo()
