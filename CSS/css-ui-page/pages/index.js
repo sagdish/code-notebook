@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Transitions.module.css'
 
 export default function Home() {
   return (
@@ -9,7 +9,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Transitions and Animations</h1>
+      <h1>Not so pretty CSS notebook</h1>
+      <h2>Transitions and Animations</h2>
       <br/>
       <h2>Button Transition</h2>
       
@@ -44,7 +45,7 @@ export default function Home() {
           <br/>
           usage: 
           <br/>
-          transform: translate(value)
+          transition: transform and duration => transform: translate(value)
 
           <div className={`${styles.box} ${styles.translate}`}>Transform</div>
           <div className={`${styles.box} ${styles.scale}`}>Scale</div>
