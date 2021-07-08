@@ -52,6 +52,10 @@ export default function Home() {
           <div className={`${styles.box} ${styles.rotate}`}>Rotate</div>
           <div className={`${styles.box} ${styles.skew}`}>Skew</div>
 
+          <h2> Transform Origin play</h2>
+          <div className={`${styles.box} ${styles.origin}`}>transform origin</div>
+
+
         </p>
       </div>
     </div>

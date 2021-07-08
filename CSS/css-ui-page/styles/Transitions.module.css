@@ -107,6 +107,10 @@
   color: white;
   font-size: 20px;
   transition: transform 1.5s;
+  /* specify origin of transformation: bottom, bottom left, right, top right etc..
+  or percentage/pixel values (x:100%, y:100%). Start point is top left(value 0, 0)
+  */
+  transform-origin: 200px 100%;
 }
 
 .translate:hover {
