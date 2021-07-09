@@ -110,7 +110,7 @@
   /* specify origin of transformation: bottom, bottom left, right, top right etc..
   or percentage/pixel values (x:100%, y:100%). Start point is top left(value 0, 0)
   */
-  transform-origin: 200px 100%;
+  /* transform-origin: 200px 100%; */
 }
 
 .translate:hover {
@@ -124,12 +124,21 @@
 .rotate:hover {
   transform: rotate(90deg);
   /* or we can use words instead of degrees */
-  /* transform: rotate(1turn); */
+  transform: rotate(1turn);
 }
 
 .skew:hover {
   transform: skew(30deg, 20deg);
   /* transform: skewY(30deg) */
+}
+
+.box.origin {
+  transform-origin: bottom right;
+  transform-origin: 50% 50%;
+}
+
+.origin:hover {
+  transform: rotate(90deg)
 }
 
 
