@@ -31,6 +31,8 @@ export default function Home() {
         <div id="ease-out" className={styles.move}>ease out</div>
       </div>
 
+
+      {/* transition:transform boxes start */}
       <div>
         <h2>Transform</h2>
         <p>Transform has Four functions:
@@ -55,9 +57,31 @@ export default function Home() {
           <h2> Transform Origin play</h2>
           <div className={`${styles.box} ${styles.origin}`}>transform origin</div>
 
+          <h2> Transform infinite play</h2>
+          <div className={`${styles.box} ${styles.endless}`}>transform origin</div>
 
         </p>
       </div>
+      {/* transform boxes end */}
+
+      {/* transform with z, - rotate etc */}
+      <div className={styles.zidx}>
+
+        <p>translateZ - move item on Z axis (bring it closer to your eyes, almost same effect as scale) </p>
+        <img src='vercel.svg' className={`${styles.img} ${styles.translateZ}`} />
+        
+        <p>rotate Z - rotate item on Z axis (this turns out is just a regular rotate property 🤯)</p>
+        <img src='vercel.svg' className={`${styles.img} ${styles.rotateZ}`} />
+        
+        <p>rotate X - rotate item on X axis (horizontal axis)</p>
+        <img src='vercel.svg' className={`${styles.img} ${styles.rotateX}`} />
+
+        <p>rotate Y - rotate item on Y axis (vertical axis)</p>
+        <img src='vercel.svg' className={`${styles.img} ${styles.rotateY}`} />
+      </div>
+
+
+
     </div>
   )
 }

@@ -134,15 +134,59 @@
 
 .box.origin {
   transform-origin: bottom right;
-  transform-origin: 50% 50%;
+  /* transform-origin: 50% 50%; */
+  /* pixels: */
+  /* transform-origin: 200px 100px; */
 }
 
 .origin:hover {
   transform: rotate(90deg)
 }
 
+/* endless rotation ---> */
+.box.endless{
+  animation: rotation 2s infinite ease-in-out;
+}
 
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+/* <--- */
 
+.zidx {
+  perspective: 1000px;
+  border: 1px solid blue;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.img {
+  width: 300px;
+  height: 300px;
+  background-color: wheat;
+  transition: transform 1s;
+}
+.img.translateZ:hover{
+  transform: translateZ(100px);
+}
+
+.img.rotateZ:hover{
+  transform: rotateZ(60deg);
+}
+
+.img.rotateX:hover{
+  transform: rotateX(80deg);
+}
+
+.img.rotateY:hover{
+  transform: rotateY(80deg);
+}
 
 /* notes: */
 /* from mdn:
