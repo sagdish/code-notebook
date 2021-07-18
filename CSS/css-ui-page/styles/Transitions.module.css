@@ -188,6 +188,33 @@
   transform: rotateY(80deg);
 }
 
+.play{
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.play a {
+  margin-top: 20px;
+  width: 200px;
+  height: 70px;
+  border-radius: 5px;
+  background-color: rgb(113, 167, 167);
+  color: white;
+  text-align: center;
+  line-height: 70px;
+  font-size: 20px;
+  transition: all 600ms;
+  
+}
+
+.play a:hover {
+  background-color: rgb(76, 111, 111);
+  width: 240px;
+}
+
 /* notes: */
 /* from mdn:
           /* Apply to 1 property */

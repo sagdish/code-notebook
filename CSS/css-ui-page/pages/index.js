@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Transitions.module.css'
 
 export default function Home() {
@@ -79,8 +80,14 @@ export default function Home() {
         <p>rotate Y - rotate item on Y axis (vertical axis)</p>
         <img src='vercel.svg' className={`${styles.img} ${styles.rotateY}`} />
       </div>
+      {/* transform with z, - rotate etc  end*/}
 
-
+      <div className={styles.play}>
+        <h3>Playground:</h3>
+        <Link href="/playground/buttons">
+          <a>Buttons</a>
+        </Link>
+      </div>
 
     </div>
   )
