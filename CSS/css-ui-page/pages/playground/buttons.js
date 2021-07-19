@@ -8,11 +8,13 @@ export default function buttons() {
         <p className={styles.back}>← Go Back</p>
       </Link>
       <h2>Cool Buttons</h2>
-      <div className={styles.rotate}>Hover Me</div>
-      <div className={styles.rotateTwo}>Hover Me</div>
+      <div className={`${styles.rotate} ${styles.btn}`}>Hover Me</div>
+      <div className={`${styles.rotateTwo} ${styles.btn}`}>Hover Me</div>
       
       {/* swipe button: */}
-      <div className={styles.rotateThree}>Hover Me</div>
+      <div className={`${styles.rotateThree} ${styles.btn}`}>Hover Me</div>
+      {/* opening slide button */}
+      <div className={`${styles.opening} ${styles.btn}`}>Hover Me</div>
     </div>
   )
 }
