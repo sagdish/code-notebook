@@ -15,6 +15,8 @@ export default function buttons() {
       <div className={`${styles.rotateThree} ${styles.btn}`}>Hover Me</div>
       {/* opening slide button */}
       <div className={`${styles.opening} ${styles.btn}`}>Hover Me</div>
+      {/* stretching effect button */}
+      <div className={`${styles.stretch} ${styles.btn}`}>Stretch</div>
     </div>
   )
 }
