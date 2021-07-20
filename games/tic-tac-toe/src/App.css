@@ -1,0 +1,38 @@
+#root {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 10px;
+  row-gap: 10px;
+  background-color: gray;
+}
+
+.square {
+  width: 110px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  /* border: 1px solid red; */
+}
+
+svg {
+  stroke-width: 15px;
+  stroke: #10538e;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.cross {
+  stroke: #EC08BE;
+}
