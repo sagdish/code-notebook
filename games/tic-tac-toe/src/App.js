@@ -27,22 +27,32 @@ function App() {
 
   const winner = detectWinner(state.positions);
 
-  if (winner) {
-    alert(`${winner} has won!!!`)
+  const reset = () => {
+    setState({
+      player: 'x',
+      positions: [
+        null, null, null,
+        null, null, null,
+        null, null, null
+      ]
+    })
   }
 
   return (
-    <div className="grid">
-      <Square position={0} value={state.positions[0]} takeTurn={takeTurn} />
-      <Square position={1} value={state.positions[1]} takeTurn={takeTurn} />
-      <Square position={2} value={state.positions[2]} takeTurn={takeTurn} />
-      <Square position={3} value={state.positions[3]} takeTurn={takeTurn} />
-      <Square position={4} value={state.positions[4]} takeTurn={takeTurn} />
-      <Square position={5} value={state.positions[5]} takeTurn={takeTurn} />
-      <Square position={6} value={state.positions[6]} takeTurn={takeTurn} />
-      <Square position={7} value={state.positions[7]} takeTurn={takeTurn} />
-      <Square position={8} value={state.positions[8]} takeTurn={takeTurn} />
-    </div>
+    <>
+      <div className="grid">
+        <Square position={0} value={state.positions[0]} takeTurn={takeTurn} />
+        <Square position={1} value={state.positions[1]} takeTurn={takeTurn} />
+        <Square position={2} value={state.positions[2]} takeTurn={takeTurn} />
+        <Square position={3} value={state.positions[3]} takeTurn={takeTurn} />
+        <Square position={4} value={state.positions[4]} takeTurn={takeTurn} />
+        <Square position={5} value={state.positions[5]} takeTurn={takeTurn} />
+        <Square position={6} value={state.positions[6]} takeTurn={takeTurn} />
+        <Square position={7} value={state.positions[7]} takeTurn={takeTurn} />
+        <Square position={8} value={state.positions[8]} takeTurn={takeTurn} />
+      </div>
+      {winner && <Results winner={winner} reset={reset} />}
+    </>
   );
 }
 

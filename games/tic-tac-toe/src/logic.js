@@ -22,4 +22,7 @@ export default function detectWinner(p) {
 
   if (p[0] === 'o' && p[4] === 'o' && p[8] === 'o') return 'o'
   if (p[2] === 'o' && p[4] === 'o' && p[6] === 'o') return 'o'
+
+  // detect tie:
+  if (p.every(pos => pos !== null)) return "tie"
 }
