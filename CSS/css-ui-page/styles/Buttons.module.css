@@ -215,3 +215,48 @@
 .slideglow:hover:before {
   transform: translateX(-100%) rotate(45deg);
 }
+
+/* slide replace */
+.slidereplace {
+  background-color: rgb(2, 2, 56);
+  color: transparent;
+  /* overflow: visible; */
+}
+
+.slidereplace:before {
+  content: "Slide Replaced!!!";
+  background-color: violet;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 250ms;
+  transform: translate(-100%, 100%);
+}
+
+.slidereplace:after {
+  content: "Slide Me";
+  background-color: violet;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 250ms;
+}
+
+.slidereplace:hover:before {
+  transform: translate(0, 0);
+} 
+.slidereplace:hover:after {
+  transform: translate(100%, -100%);
+} 

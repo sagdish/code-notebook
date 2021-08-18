@@ -20,6 +20,7 @@ export default function buttons() {
       {/* sliding effect button with diff text */}
       <div className={`${styles.slide} ${styles.btn}`}>Button</div>
       <div className={`${styles.slideglow} ${styles.btn}`}>Slide Grow</div>
+      <div className={`${styles.slidereplace} ${styles.btn}`}>Slide Replace</div>
     </div>
   )
 }
