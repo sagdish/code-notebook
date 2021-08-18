@@ -28,7 +28,7 @@
   font-size: 14px;
   transition-property: background-color color width;
   transition-duration: 1000ms;
-  /* transition-delay: 500ms; */
+  /* transition-delay: 1400ms; */
 }
 .button:hover {
   background-color: rgb(137, 162, 238);

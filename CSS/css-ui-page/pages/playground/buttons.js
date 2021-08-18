@@ -17,6 +17,9 @@ export default function buttons() {
       <div className={`${styles.opening} ${styles.btn}`}>Hover Me</div>
       {/* stretching effect button */}
       <div className={`${styles.stretch} ${styles.btn}`}>Stretch</div>
+      {/* sliding effect button with diff text */}
+      <div className={`${styles.slide} ${styles.btn}`}>Button</div>
+      <div className={`${styles.slideglow} ${styles.btn}`}>Slide Grow</div>
     </div>
   )
 }
